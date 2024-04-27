@@ -69,29 +69,30 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+├── client/ # React front-end
+│ ├── public/ # Static files
+│ │ ├── index.html # Main HTML file
+│ │ ├── favicon.ico # Favicon
+│ │ └── manifest.json # Manifest file
+│ ├── src/ # React source files
+│ │ ├── components/ # React components
+│ │ ├── App.css # App-specific styles
+│ │ ├── App.js # React main app component
+│ │ ├── index.js # Entry file for React app
+│ │ └── serviceWorker.js # Service worker (optional)
+│ ├── package.json # NPM package file for React app
+│ └── .gitignore # Ignore files for git
+│
+├── server/ # Node/Express back-end
+│ ├── config/ # Configuration files
+│ ├── models/ # Database models
+│ ├── routes/ # API route definitions
+│ ├── controllers/ # Controller functions to separate logic from routes
+│ ├── server.js # Entry point for the backend server
+│ ├── package.json # NPM package file for server
+│ └── .gitignore # Ignore files for git
+│
+├── README.md # Project README file
+└── .gitignore # Global .gitignore
 
-├── client/                  # React front-end
-│   ├── public/              # Static files
-│   │   ├── index.html       # Main HTML file
-│   │   ├── favicon.ico      # Favicon
-│   │   └── manifest.json    # Manifest file
-│   ├── src/                 # React source files
-│   │   ├── components/      # React components
-│   │   ├── App.css          # App-specific styles
-│   │   ├── App.js           # React main app component
-│   │   ├── index.js         # Entry file for React app
-│   │   └── serviceWorker.js # Service worker (optional)
-│   ├── package.json         # NPM package file for React app
-│   └── .gitignore           # Ignore files for git
-│
-├── server/                  # Node/Express back-end
-│   ├── config/              # Configuration files
-│   ├── models/              # Database models
-│   ├── routes/              # API route definitions
-│   ├── controllers/         # Controller functions to separate logic from routes
-│   ├── server.js            # Entry point for the backend server
-│   ├── package.json         # NPM package file for server
-│   └── .gitignore           # Ignore files for git
-│
-├── README.md                # Project README file
-└── .gitignore               # Global .gitignore
+TEStTEST
