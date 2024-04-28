@@ -9,6 +9,7 @@ const { getActivities, getRestaurants } = require('./controller');
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './client/src')));
 
+//just store answers to prompts here. in global scope
 let location;
 let indoorOutdoor;
 let activityChosen;
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // handle location from client
-app.post('/location', (req, res) => {
+app.post('/', (req, res) => {
   location = req.body.location;
   res.json({ prompt: 'Do you prefer to do an indoor or outdoor activity?' });
 });
