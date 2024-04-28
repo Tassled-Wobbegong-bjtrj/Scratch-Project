@@ -3,18 +3,63 @@ const path = require('path');
 const app = express();
 const PORT = 8080;
 const controller = require('./controller');
+const { getActivities, getRestaurants } = require('./controller');
 
 // parses JSON from incoming request
 app.use(express.json());
 app.use(express.static(path.join(__dirname, './client/src')));
 
-// send first prompt (location & indoor/outdoor )to API;
+let location;
+let indoorOutdoor;
+let activityChosen;
+let restaurantChoice;
 
-// send two activities options back to user
+//example just for workflow purpose. we can delete/update later
+app.get('/', (req, res) => {
+  res.json({ prompt: 'What location do you want to spend the evening in?' });
+});
+
+// handle location from client
+app.post('/location', (req, res) => {
+  location = req.body.location;
+  res.json({ prompt: 'Do you prefer to do an indoor or outdoor activity?' });
+});
+
+// send first prompt (location & indoor/outdoor )to API;
+app.post('/indoorOutdoor', async (req, res) => {
+  indoorOutdoor = req.body.indoorOutdoor;
+  try {
+
+    // Call controller function to interact with OpenAI API
+    const activities = await getActivities(location, indoorOutdoor);
+
+    // Send response back to client - this still needs to be formatted
+    // send two activities options back to user
+    res.json({ activities });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // send second prompt (food type) to API;
+app.post('/foodType', (req, res) => {
+  res.json({ prompt: 'What are you craving for?' });
+});
 
 // send two restaurants (casual or fancy) back to user
+app.post('/craving', async (req, res) => {
+  const craving = req.body.craving;
+  try {
+    // Call controller function to get restaurant options based on the craving
+    const restaurants = await getRestaurants(craving);
+    // Send response back to client
+    res.json({ restaurants });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // Global error handling middleware
 app.use('*', (req, res) => {
