@@ -1,12 +1,16 @@
-import './App.css';
-import React from 'react';
+// ❤️❤️ ❤️❤️ ❤️❤️
 
-function App() {
+// App.js
+import React from 'react'
+import QuestionWindow from './Components/QuestionWindow'
+
+const App = () => {
   return (
-    <div className='App'>
-      <header className='App-header'></header>
+    <div>
+      <h1>Date Planner</h1>
+      <QuestionWindow />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
