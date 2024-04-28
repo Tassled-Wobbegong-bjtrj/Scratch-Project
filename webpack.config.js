@@ -40,11 +40,11 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 3000,
+    port: 8080,
     static: {
       publicPath: '/',
       directory: path.join(__dirname, '/build')
     },
-    proxy: [{ context: ['/api'], target: 'http://localhost:3001' }]
+    proxy: [{ context: ['/api'], target: 'http://localhost:8080' }]
   }
 }
