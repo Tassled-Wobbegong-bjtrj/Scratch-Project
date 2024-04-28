@@ -41,7 +41,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "start": " nodemon server/server.js",
+    "start": " nodemon src/index.js",
     "build": "NODE_ENV=production webpack",
     "dev": "NODE_ENV=development webpack serve --open",
     "test": "react-scripts test",
@@ -64,5 +64,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "type": "module"
 }
