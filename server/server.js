@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-//test on Rick branch
-=======
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -37,4 +34,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
->>>>>>> dev
+
+//test on Rick branch
