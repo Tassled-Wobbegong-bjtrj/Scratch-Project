@@ -1,4 +1,5 @@
 // ❤️❤️ ❤️❤️ ❤️❤️
+// ActivityType.js
 import React, { useState } from 'react'
 
 const ActivityType = ({ onAnswer }) => {
@@ -15,7 +16,9 @@ const ActivityType = ({ onAnswer }) => {
         <option value="indoor">Indoor</option>
         <option value="outdoor">Outdoor</option>
       </select>
-      <button onClick={handleNext}>Next</button>
+      <button className="button" onClick={handleNext}>
+        Next
+      </button>
     </div>
   )
 }

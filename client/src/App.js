@@ -3,6 +3,7 @@
 // App.js
 import React from 'react'
 import QuestionWindow from './Components/QuestionWindow'
+import './App.css'
 
 const App = () => {
   return (

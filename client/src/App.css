@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+/* Responsive design based on the current device's screen size */
+/* Adjust layout for smaller screens */
+@media screen and (max-width: 768px) {
+  .App-header {
+    min-height: 80vh;
+  }
+}
+/* Adjust layout for even smaller screens */
+@media screen and (max-width: 480px) {
+  .App-logo {
+    height: 30vmin;
+  }
+}
+
+/* Hover effect for testing*/
+.button:hover {
+  background-color: #4caf50;
+  color: white;
+}
