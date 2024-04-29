@@ -12,7 +12,9 @@ const Location = ({ onAnswer }) => {
     <div>
       <p>What city did you two want to spend the evening in?</p>
       <input className="location-input" type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-      <button onClick={handleNext}>Next</button>
+      <button className="button" onClick={handleNext}>
+        Next
+      </button>
     </div>
   )
 }

@@ -12,7 +12,9 @@ const DinnerPlans = ({ onAnswer }) => {
     <div>
       <p>Cool, what about dinner plans, is there anything you're craving?</p>
       <input className="dinner-input" type="text" value={craving} onChange={(e) => setCraving(e.target.value)} />
-      <button onClick={handleNext}>Next</button>
+      <button className="button" onClick={handleNext}>
+        Next
+      </button>
     </div>
   )
 }
