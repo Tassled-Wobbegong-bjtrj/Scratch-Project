@@ -5,9 +5,16 @@ const cors = require("cors");
 const PORT = 8080;
 const controller = require("./controller");
 const { getActivities, getRestaurants } = require("./controller");
+const OpenAI = require("openai");
+require("dotenv").config();
 const locations = {};
 const cravings = {};
 const types = {};
+const responses = {};
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // API Key is in .env file
+});
 
 // parses JSON from incoming request
 app.use(cors());
@@ -19,6 +26,10 @@ let location;
 let indoorOutdoor;
 let activityChosen;
 let restaurantChoice;
+
+let city;
+let type;
+let food;
 
 //jeff test connection
 
@@ -36,6 +47,7 @@ app.get("/message", (req, res) => {
 app.post("/location", (req, res) => {
   console.log("location", req.body); // Logs the message to the console
   locations.city = req.body.city;
+  city = req.body.city;
   res
     .status(201)
     .json({ success: true, msg: "Message received", data: req.body });
@@ -49,6 +61,7 @@ app.get("/location", (req, res) => {
 app.post("/type", (req, res) => {
   console.log("type", req.body); // Logs the message to the console
   types.type = req.body.type;
+
   res
     .status(201)
     .json({ success: true, msg: "Message received", data: req.body });
@@ -62,6 +75,7 @@ app.get("/type", (req, res) => {
 app.post("/craving", (req, res) => {
   console.log("dinner", req.body); // Logs the message to the console
   cravings.craving = req.body.craving;
+  console.log(cravings.craving);
   res
     .status(201)
     .json({ success: true, msg: "Message received", data: req.body });
@@ -69,6 +83,53 @@ app.post("/craving", (req, res) => {
 
 app.get("/craving", (req, res) => {
   res.status(200).json(cravings); // Send all messages as JSON
+});
+
+// mock gpt prompt/response
+app.post("/chat", (req, res) => {
+  if (!city) {
+    return res.status(400).json({
+      error:
+        "City is not defined. Please make sure to submit the location first.",
+    });
+  }
+  responses = {
+    response: `Hey chatGPT, could you give us a good evening date idea with an indoor activity and a high end sushi spot in ${city}?`,
+  };
+
+  console.log(responses);
+  res.json(responses);
+});
+
+app.get("/chat", (req, res) => {
+  // open api
+  // send the output
+  city = req.body.city;
+  async function getActivities(city) {
+    try {
+      const chatCompletion = await openai.chat.completions.create({
+        messages: [
+          {
+            role: "user",
+            content: `Hey chatGPT, could you give us a good evening date idea with an indoor activity and a high end sushi spot in ${city}?`,
+          },
+        ],
+        model: "gpt-3.5-turbo",
+      });
+      const response = chatCompletion.choices[0].message; // // if we didnt have contentstring message: "String"
+      // {message: "string"}
+      console.log(response, chatCompletion);
+      return res.json(response);
+    } catch (error) {
+      console.error("Error:", error);
+      return "Sorry, I couldn't get an answer.";
+    }
+  }
+  getActivities(city);
+  // res.json({
+  //   response: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end sushi spot in ${city}?`,
+  // });
+  // res.json(responses);
 });
 
 // handle location from client

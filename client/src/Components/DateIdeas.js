@@ -25,7 +25,7 @@ const DateIdeas = ({ ideas }) => {
   const [message, setMessage] = useState(""); // jeff
   const [cravings, setCravings] = useState(""); // jeff
   const [types, setType] = useState("");
-
+  const [response, setResponse] = useState("");
   // Function to fetch date suggestions from the server based on user answers
   const fetchDateSuggestions = async () => {
     try {
@@ -38,11 +38,6 @@ const DateIdeas = ({ ideas }) => {
       console.error("Error fetching date suggestions:", error);
     }
   };
-
-  // Fetch date suggestions when component mounts
-  // useEffect(() => {
-  //   fetchDateSuggestions();
-  // }, [ideas]);
 
   //Jeff
   useEffect(() => {
@@ -72,6 +67,15 @@ const DateIdeas = ({ ideas }) => {
       .then((data) => console.log("type", data));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:8080/chat")
+      .then((res) => res.json())
+      //the .city has to be in line, we cant use .message
+      // i think its b/c data is traveling as {"city: sf"}
+      .then((data) => setResponse(data))
+      .then((data) => console.log("dateideas", data));
+  }, []);
+
   return (
     <div>
       {showSuggestions ? (
@@ -90,8 +94,8 @@ const DateIdeas = ({ ideas }) => {
         </div>
       ) : (
         <p>
-          {" "}
-          {message} {cravings} {types}
+          {response.response}
+          {/* {message} {cravings} {types} */}
         </p>
       )}
     </div>
