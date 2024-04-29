@@ -16,15 +16,21 @@ let activityChosen
 let restaurantChoice
 
 //example just for workflow purpose. we can delete/update later
-app.get('/', (req, res) => {
-  res.json({ prompt: 'What location do you want to spend the evening in?' })
-})
 
-// handle location from client
-app.post('/', (req, res) => {
-  location = req.body.location
-  res.json({ prompt: 'Do you prefer to do an indoor or outdoor activity?' })
-})
+// app.get('/', (req, res) => {
+//   res.json({ prompt: 'What location do you want to spend the evening in?' });
+//   //res.status(200).send(res.local.options)
+// });
+
+
+
+// handle location and indoor/outdoor from client
+app.post('/generate-response', getActivities,(req, res) => {
+  //location = req.body.location;
+  // res.status(200).send(response);
+  
+});
+
 
 // send first prompt (location & indoor/outdoor )to API;
 app.post('/indoorOutdoor', async (req, res) => {

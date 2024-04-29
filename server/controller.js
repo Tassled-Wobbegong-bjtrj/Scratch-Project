@@ -39,27 +39,35 @@ const OpenAI = require('openai');
 require('dotenv').config();
 
 const openai = new OpenAI({
-  apiKey: , // API Key is in .env file
+  // apiKey: , // API Key is in .env file
 });
 // -------Option 1: using model 'gpt-3.5-turbo'----------------
 //Function to get activities using OpenAPI
-async function getActivities(location, indoorOutdoor) {
+async function getActivities(req,res,next) {
+  const {question, answer} = req.body;
+  console.log(question);
+  console.log(answer);
   try {
     const chatCompletion = await openai.chat.completions.create({
       messages: [
         {
           role: 'user',
-          content:
-            `Can you give me 2 activiies to do ${indoorOutdoor === 'indoor' ? 'indoors' : 'outdoors'} in ${location} for a date?`,
+          content:question,
+          
+            //`Can you give me 2 activiies to do ${req.body.onAnswer} in ${req.body.prevAnswer} for a date? please return as a list as json form`,
         },
+        { role : 'assistant',
+          content : answer}
       ],
       model: 'gpt-3.5-turbo',
     });
     const response = chatCompletion.choices[0].message.content;
     console.log(response, chatCompletion);
-    return response;
+    //res.locals.activties = response;
+    return next();
   } catch (error) {
     console.error('Error:', error);
+    next(error);
     return "Sorry, I couldn't get an answer.";
   }
 }
