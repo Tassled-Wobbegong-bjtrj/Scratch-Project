@@ -20,9 +20,9 @@ let restaurantChoice;
 
 //jeff test connection
 
-//example just for workflow purpose. we can delete/update later
+//to get the front end to show on srver side
 app.get("/", (req, res) => {
-  res.json({ prompt: "What location do you want to spend the evening in?" });
+  res.sendFile(path.resolve("../client/public/index.html"));
 });
 
 //jeff test connection
@@ -84,18 +84,18 @@ app.post("/foodType", (req, res) => {
 });
 
 // send two restaurants (casual or fancy) back to user
-app.post("/craving", async (req, res) => {
-  const craving = req.body.craving;
-  try {
-    // Call controller function to get restaurant options based on the craving
-    const restaurants = await getRestaurants(craving);
-    // Send response back to client
-    res.json({ restaurants });
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+// app.post("/craving", async (req, res) => {
+//   const craving = req.body.craving;
+//   try {
+//     // Call controller function to get restaurant options based on the craving
+//     const restaurants = await getRestaurants(craving);
+//     // Send response back to client
+//     res.json({ restaurants });
+//   } catch (error) {
+//     console.error("Error:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 // Global error handling middleware
 app.use("*", (req, res) => {
