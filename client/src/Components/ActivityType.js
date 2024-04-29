@@ -1,18 +1,24 @@
 // ❤️❤️ ❤️❤️ ❤️❤️
+
+
 // ActivityType.js
 import React, { useState } from 'react'
 
 const ActivityType = ({ onAnswer }) => {
-  const [type, setType] = useState('')
+  const [type, setType] = useState("");
 
   const handleNext = () => {
-    onAnswer('activityType', type)
-  }
+    onAnswer("activityType", type);
+  };
 
   return (
     <div>
-      <p>Nice, were you looking for an indoor or outdoor activity?</p>
-      <select className="activity-type-select" onChange={(e) => setType(e.target.value)}>
+      <p>The city of Angels!</p>
+      <p>Are we looking for something indoors or outdoors?</p>
+      <select
+        className="activity-type-select"
+        onChange={(e) => setType(e.target.value)}
+      >
         <option value="indoor">Indoor</option>
         <option value="outdoor">Outdoor</option>
       </select>
@@ -20,7 +26,7 @@ const ActivityType = ({ onAnswer }) => {
         Next
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ActivityType
+export default ActivityType;
