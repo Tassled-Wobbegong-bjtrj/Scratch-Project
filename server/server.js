@@ -27,7 +27,7 @@ let indoorOutdoor;
 let activityChosen;
 let restaurantChoice;
 
-let city;
+// let city;
 let type;
 let food;
 
@@ -48,6 +48,7 @@ app.post("/location", (req, res) => {
   console.log("location", req.body); // Logs the message to the console
   locations.city = req.body.city;
   city = req.body.city;
+  console.log(city);
   res
     .status(201)
     .json({ success: true, msg: "Message received", data: req.body });
@@ -104,28 +105,29 @@ app.post("/chat", (req, res) => {
 app.get("/chat", (req, res) => {
   // open api
   // send the output
-  city = req.body.city;
-  async function getActivities(city) {
+  // city = req.body.city;
+  async function getActivities(city, type, cravings) {
     try {
       const chatCompletion = await openai.chat.completions.create({
         messages: [
           {
             role: "user",
-            content: `Hey chatGPT, could you give us a good evening date idea with an indoor activity and a high end sushi spot in ${city}?`,
+            content: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end ${cravings} spot in ${city}?`,
           },
         ],
         model: "gpt-3.5-turbo",
       });
-      const response = chatCompletion.choices[0].message; // // if we didnt have contentstring message: "String"
+      const response = chatCompletion.choices[0].message.content; // // if we didnt have contentstring message: "String"
       // {message: "string"}
-      console.log(response, chatCompletion);
-      return res.json(response);
+      console.log("response", response);
+      console.log("chatCompletion", chatCompletion);
+      return res.json({ response: response });
     } catch (error) {
       console.error("Error:", error);
       return "Sorry, I couldn't get an answer.";
     }
   }
-  getActivities(city);
+  getActivities(locations.city, types.type, cravings.craving);
   // res.json({
   //   response: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end sushi spot in ${city}?`,
   // });
