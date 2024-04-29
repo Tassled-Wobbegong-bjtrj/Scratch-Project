@@ -4,13 +4,13 @@ const app = express();
 const cors = require("cors");
 const PORT = 8080;
 const controller = require("./controller");
-const { getActivities, getRestaurants } = require("./controller");
+// const { getActivities, getRestaurants } = require("./controller");
 const OpenAI = require("openai");
 require("dotenv").config();
 const locations = {};
 const cravings = {};
 const types = {};
-const responses = {};
+// const responses = {};
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // API Key is in .env file
@@ -22,14 +22,14 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "./client/src")));
 
 //just store answers to prompts here. in global scope
-let location;
-let indoorOutdoor;
-let activityChosen;
-let restaurantChoice;
+// let location;
+// let indoorOutdoor;
+// let activityChosen;
+// let restaurantChoice;
 
 // let city;
-let type;
-let food;
+// let type;
+// let food;
 
 //jeff test connection
 
@@ -47,8 +47,8 @@ app.get("/message", (req, res) => {
 app.post("/location", (req, res) => {
   console.log("location", req.body); // Logs the message to the console
   locations.city = req.body.city;
-  city = req.body.city;
-  console.log(city);
+  // city = req.body.city;
+  // console.log(city);
   res
     .status(201)
     .json({ success: true, msg: "Message received", data: req.body });
@@ -86,21 +86,21 @@ app.get("/craving", (req, res) => {
   res.status(200).json(cravings); // Send all messages as JSON
 });
 
-// mock gpt prompt/response
-app.post("/chat", (req, res) => {
-  if (!city) {
-    return res.status(400).json({
-      error:
-        "City is not defined. Please make sure to submit the location first.",
-    });
-  }
-  responses = {
-    response: `Hey chatGPT, could you give us a good evening date idea with an indoor activity and a high end sushi spot in ${city}?`,
-  };
+// // mock gpt prompt/response
+// app.post("/chat", (req, res) => {
+//   if (!city) {
+//     return res.status(400).json({
+//       error:
+//         "City is not defined. Please make sure to submit the location first.",
+//     });
+//   }
+//   responses = {
+//     response: `Hey chatGPT, could you give us a good evening date idea with an indoor activity and a high end sushi spot in ${city}?`,
+//   };
 
-  console.log(responses);
-  res.json(responses);
-});
+//   console.log(responses);
+//   res.json(responses);
+// });
 
 app.get("/chat", (req, res) => {
   // open api
@@ -112,7 +112,7 @@ app.get("/chat", (req, res) => {
         messages: [
           {
             role: "user",
-            content: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end ${cravings} spot in ${city}?`,
+            content: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end ${cravings} spot in ${city}? Make sure to include specific addresses for the date and links to pictures.`,
           },
         ],
         model: "gpt-3.5-turbo",
@@ -135,31 +135,31 @@ app.get("/chat", (req, res) => {
 });
 
 // handle location from client
-app.post("/", (req, res) => {
-  location = req.body.location;
-  res.json({ prompt: "Do you prefer to do an indoor or outdoor activity?" });
-});
+// app.post("/", (req, res) => {
+//   location = req.body.location;
+//   res.json({ prompt: "Do you prefer to do an indoor or outdoor activity?" });
+// });
 
 // send first prompt (location & indoor/outdoor )to API;
-app.post("/indoorOutdoor", async (req, res) => {
-  indoorOutdoor = req.body.indoorOutdoor;
-  try {
-    // Call controller function to interact with OpenAI API
-    const activities = await getActivities(location, indoorOutdoor);
+// app.post("/indoorOutdoor", async (req, res) => {
+//   indoorOutdoor = req.body.indoorOutdoor;
+//   try {
+//     // Call controller function to interact with OpenAI API
+//     const activities = await getActivities(location, indoorOutdoor);
 
-    // Send response back to client - this still needs to be formatted
-    // send two activities options back to user
-    res.json({ activities });
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+//     // Send response back to client - this still needs to be formatted
+//     // send two activities options back to user
+//     res.json({ activities });
+//   } catch (error) {
+//     console.error("Error:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 // send second prompt (food type) to API;
-app.post("/foodType", (req, res) => {
-  res.json({ prompt: "What are you craving for?" });
-});
+// app.post("/foodType", (req, res) => {
+//   res.json({ prompt: "What are you craving for?" });
+// });
 
 // send two restaurants (casual or fancy) back to user
 // app.post("/craving", async (req, res) => {
@@ -193,5 +193,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
-
-//test on Rick branch
