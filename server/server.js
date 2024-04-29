@@ -3,10 +3,11 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const PORT = 8080;
-// const controller = require("./controller");
-const { getActivities, getRestaurants } = require("./controller");
+const { getActivities } = require("./controller");
 const OpenAI = require("openai");
+
 require("dotenv").config();
+
 //declaring variables in global so we have access to them
 const locations = {};
 const cravings = {};

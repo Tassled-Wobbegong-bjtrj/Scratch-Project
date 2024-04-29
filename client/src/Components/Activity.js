@@ -85,27 +85,27 @@ const Activity = ({ onAnswer }) => {
         // Handle errors here
       });
   };
-  const dragon = {
-    IndoorActivity: {
-      location: "Urban Putt",
-      address: "1096 South Van Ness Avenue, San Francisco, CA 94110",
-      details:
-        "Urban Putt offers a unique indoor mini-golf experience set within a creatively designed space that's perfect for a fun and interactive date. After enjoying the whimsical courses, you can relax at the bar with a drink.",
-      website: "https://www.urbanputt.com",
-    },
-    Dining: {
-      location: "Tacolicious",
-      address: "741 Valencia St, San Francisco, CA 94110",
-      details:
-        "Just a short drive from Urban Putt, Tacolicious serves up some of the city's finest tacos in a vibrant and stylish setting. Their menu features locally sourced ingredients and innovative taco creations, alongside a great selection of cocktails.",
-      website: "http://tacolicious.com",
-    },
-  };
+  // const dragon = {
+  //   IndoorActivity: {
+  //     location: "Urban Putt",
+  //     address: "1096 South Van Ness Avenue, San Francisco, CA 94110",
+  //     details:
+  //       "Urban Putt offers a unique indoor mini-golf experience set within a creatively designed space that's perfect for a fun and interactive date. After enjoying the whimsical courses, you can relax at the bar with a drink.",
+  //     website: "https://www.urbanputt.com",
+  //   },
+  //   Dining: {
+  //     location: "Tacolicious",
+  //     address: "741 Valencia St, San Francisco, CA 94110",
+  //     details:
+  //       "Just a short drive from Urban Putt, Tacolicious serves up some of the city's finest tacos in a vibrant and stylish setting. Their menu features locally sourced ingredients and innovative taco creations, alongside a great selection of cocktails.",
+  //     website: "http://tacolicious.com",
+  //   },
+  // };
 
   return (
     <div>
       <p>Mmmm... Yum you want something casual or a little more high-end</p>
-      <div className="card-container">
+      {/* <div className="card-container">
       <h2>Date Night Plan</h2>
       <div className="activity">
         <h3>{dragon.IndoorActivity.location}</h3>
@@ -119,7 +119,7 @@ const Activity = ({ onAnswer }) => {
         <p>{dragon.Dining.details}</p>
         <a href={dragon.Dining.website} target="_blank" rel="noopener noreferrer">Visit Website</a>
       </div>
-    </div>
+    </div> */}
       <form>
         <input
           className="location-input"
