@@ -7,6 +7,8 @@ const controller = require("./controller");
 const { getActivities, getRestaurants } = require("./controller");
 const locations = {};
 const cravings = {};
+const types = {};
+
 // parses JSON from incoming request
 app.use(cors());
 app.use(express.json());
@@ -41,6 +43,19 @@ app.post("/location", (req, res) => {
 
 app.get("/location", (req, res) => {
   res.status(200).json(locations); // Send all messages as JSON
+});
+
+// type
+app.post("/type", (req, res) => {
+  console.log("type", req.body); // Logs the message to the console
+  types.type = req.body.type;
+  res
+    .status(201)
+    .json({ success: true, msg: "Message received", data: req.body });
+});
+
+app.get("/type", (req, res) => {
+  res.status(200).json(types); // Send all messages as JSON
 });
 
 // cravings

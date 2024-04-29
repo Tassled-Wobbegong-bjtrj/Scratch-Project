@@ -24,6 +24,7 @@ const DateIdeas = ({ ideas }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [message, setMessage] = useState(""); // jeff
   const [cravings, setCravings] = useState(""); // jeff
+  const [types, setType] = useState("");
 
   // Function to fetch date suggestions from the server based on user answers
   const fetchDateSuggestions = async () => {
@@ -62,6 +63,15 @@ const DateIdeas = ({ ideas }) => {
       .then((data) => console.log("dateideas", data));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:8080/type")
+      .then((res) => res.json())
+      //the .city has to be in line, we cant use .message
+      // i think its b/c data is traveling as {"city: sf"}
+      .then((data) => setType(data.type))
+      .then((data) => console.log("type", data));
+  }, []);
+
   return (
     <div>
       {showSuggestions ? (
@@ -81,7 +91,7 @@ const DateIdeas = ({ ideas }) => {
       ) : (
         <p>
           {" "}
-          {message} {cravings}
+          {message} {cravings} {types}
         </p>
       )}
     </div>
