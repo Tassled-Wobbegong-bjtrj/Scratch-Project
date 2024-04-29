@@ -22,9 +22,14 @@ const QuestionWindow = () => {
       <Maintainer />
       {step === 1 && <Location onAnswer={handleAnswer} />}
       {step === 2 && <ActivityType onAnswer={handleAnswer} />}
-      {/* {step === 3 && <Activity onAnswer={handleAnswer} previousActivity={answers.activityType} />} */}
-      {step === 3 && <DinnerPlans onAnswer={handleAnswer} />}
-      {step === 4 && <DateIdeas ideas={answers} />}
+      {step === 3 && (
+        <Activity
+          onAnswer={handleAnswer}
+          previousActivity={answers.activityType}
+        />
+      )}
+      {step === 4 && <DinnerPlans onAnswer={handleAnswer} />}
+      {step === 5 && <DateIdeas ideas={answers} />}
     </div>
   );
 };

@@ -93,7 +93,7 @@ const DateIdeas = ({ ideas }) => {
           <button onClick={() => setShowSuggestions(true)}>Yes</button>
         </div>
       ) : (
-        <p>
+        <p id="final-suggestion" style={{ fontSize: "18px", color: "blue" }}>
           {response.response}
           {/* {message} {cravings} {types} */}
         </p>
