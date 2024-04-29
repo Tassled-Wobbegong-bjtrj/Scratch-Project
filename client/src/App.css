@@ -33,16 +33,18 @@ body {
 
 h1 {
   color: #db7093; /* Pale violet red color */
-  font-size: 24px; /* Slightly smaller for mobile */
+  font-size: 2rem; /* Slightly smaller for mobile */
   font-weight: 700;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 p {
-  color: #696969; /* Dim gray color */
-  font-size: 14px; /* Adjusted for mobile readability */
+  color: #645f5f; /* Dim gray color */
+  font-size: 1rem; /* Adjusted for mobile readability */
   line-height: 1.6;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 button {

@@ -39,9 +39,9 @@ const OpenAI = require("openai");
 require("dotenv").config();
 
 
-// const openai = new OpenAI({
-//   // apiKey: , // API Key is in .env file
-// });
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // API Key is in .env file
+});
 
 // -------Option 1: using model 'gpt-3.5-turbo'----------------
 //Function to get activities using OpenAPI
