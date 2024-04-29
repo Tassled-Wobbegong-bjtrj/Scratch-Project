@@ -58,7 +58,7 @@ const DateIdeas = ({ ideas }) => {
       .then((res) => res.json())
       //the .city has to be in line, we cant use .message
       // i think its b/c data is traveling as {"city: sf"}
-      .then((data) => setCravings(data.cravings))
+      .then((data) => setCravings(data.craving))
       .then((data) => console.log("dateideas", data));
   }, []);
 
@@ -79,7 +79,10 @@ const DateIdeas = ({ ideas }) => {
           <button onClick={() => setShowSuggestions(true)}>Yes</button>
         </div>
       ) : (
-        <p> {message} </p>
+        <p>
+          {" "}
+          {message} {cravings}
+        </p>
       )}
     </div>
   );
