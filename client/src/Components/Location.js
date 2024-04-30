@@ -45,6 +45,7 @@ const Location = ({ onAnswer }) => {
         />
         <button onClick={handleNext}>Next</button>
       </form>
+
     </div>
   );
 };
