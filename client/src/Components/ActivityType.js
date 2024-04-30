@@ -24,11 +24,13 @@ import React, { useState } from "react";
 //   );
 // };
 
+// our component to check indoor or ourdoor.
 const ActivityType = ({ onAnswer }) => {
   const [type, setType] = useState("");
 
   const handleNext = () => {
     onAnswer("type", type); // goes to next component
+    // we make a post request here because we want to use the data on the backend to put into our openAI prompt
     fetch("http://localhost:8080/type", {
       method: "POST",
       headers: {
@@ -59,7 +61,8 @@ const ActivityType = ({ onAnswer }) => {
   };
   return (
     <div>
-      <p>The city of Angels!</p>
+      {/* this first p tag was the goal of being able to talk back and forth with gpt to get the final response */}
+      {/* <p>The city of Angels!</p> */}
       <p>Are we looking for something indoors or outdoors?</p>
       <form>
         <input
