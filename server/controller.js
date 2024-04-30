@@ -1,3 +1,4 @@
+
 // //  ❤️❤️ ❤️❤️ ❤️❤️
 // // const { Configuration, OpenAIApi } = require('openai');
 // // const config = new Configuration({
@@ -35,29 +36,29 @@
 // };
 // runPrompt();
 
+
 const OpenAI = require("openai");
 require("dotenv").config();
 
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // API Key is in .env file
+  apiKey: process.env.OPENAI_API_KEY, // API Key is stored in .env file in root
 });
 
 // -------Option 1: using model 'gpt-3.5-turbo'----------------
-//Function to get activities using OpenAPI
-async function getActivities(req,res,next) {
-  const {question, answer} = req.body;
-  console.log(question);
-  console.log(answer);
+
+//Function to get activities using OpenAPI - not currently used as middleware
+async function getActivities(city, type, cravings) {
+
   try {
     const chatCompletion = await openai.chat.completions.create({
       messages: [
         {
 
           role: "user",
-          content: `Can you give me 2 activiies to do ${
-            indoorOutdoor === "indoor" ? "indoors" : "outdoors"
-          } in ${location} for a date?`,
+
+          content: `Hey chatGPT, could you give us a good evening date idea with an ${type} activity and a high end ${cravings} spot in ${city}? 
+          Make sure to include specific addresses`,
 
         },
         { role : 'assistant',
@@ -65,10 +66,13 @@ async function getActivities(req,res,next) {
       ],
       model: "gpt-3.5-turbo",
     });
-    const response = chatCompletion.choices[0].message.content;
-    console.log(response, chatCompletion);
-    //res.locals.activties = response;
-    return next();
+
+    const response = chatCompletion.choices[0].message.content; // // if we didnt have contentstring message: "String"
+    // {message: "string"}
+    console.log("response", response);
+    console.log("chatCompletion", chatCompletion);
+    return response;
+
   } catch (error) {
 
     console.error('Error:', error);
@@ -76,6 +80,7 @@ async function getActivities(req,res,next) {
     return "Sorry, I couldn't get an answer.";
   }
 }
+
 
 // Function to get restaurant options using OpenAI API
 async function getRestaurants(craving) {
@@ -149,7 +154,7 @@ async function getRestaurants(craving) {
 //   console.log('Answer:', answer);
 // })();
 
+
 module.exports = {
   getActivities,
-  getRestaurants,
 };

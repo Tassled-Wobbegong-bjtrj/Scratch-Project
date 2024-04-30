@@ -132,7 +132,7 @@ const DateIdeas = ({ ideas }) => {
   }, []);
 
   return (
-    <div>
+    <div id="final-suggestion-wrapper">
       {showSuggestions ? (
         <div>
           <h2>Date Ideas</h2>
@@ -148,7 +148,37 @@ const DateIdeas = ({ ideas }) => {
           <button onClick={() => setShowSuggestions(true)}>Yes</button>
         </div>
       ) : (
-        <p>
+        <p
+          id="final-suggestion"
+          style={({ fontSize: "18px" }, { textAlign: "center" })}
+        >
+          {/* <div className="card-container">
+            <h2>Date Night Plan</h2>
+            <div className="activity">
+              <h3>{response.IndoorActivity.location}</h3>
+              <p>{response.IndoorActivity.address}</p>
+              <p>{response.IndoorActivity.details}</p>
+              <a
+                href={response.IndoorActivity.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Website
+              </a>
+            </div>
+            <div className="dining">
+              <h3>{response.Dining.location}</h3>
+              <p>{response.Dining.address}</p>
+              <p>{response.Dining.details}</p>
+              <a
+                href={response.Dining.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Website
+              </a>
+            </div>
+          </div> */}
           {response.response}
           {/* {message} {cravings} {types} */}
         </p>

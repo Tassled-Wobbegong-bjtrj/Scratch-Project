@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100vh;
   overflow-x: hidden;
 }
@@ -29,21 +30,25 @@ body {
   padding: 25px;
   box-sizing: border-box;
   text-align: center;
+  position: relative;
+  top: 50%; /* Move it down by half of its height */
+  transform: translateY(-50%); /* Adjust back up by half of its height */
 }
 
 h1 {
+  font-family: Copperplate;
   color: #db7093; /* Pale violet red color */
-  font-size: 2rem; /* Slightly smaller for mobile */
+  font-size: 3rem; /* Slightly smaller for mobile */
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
 p {
-  color: #645f5f; /* Dim gray color */
-  font-size: 1rem; /* Adjusted for mobile readability */
+  color: #665d5d; /* Dim gray color */
+  font-size: 1.25rem; /* Adjusted for mobile readability */
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
@@ -57,29 +62,41 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-left: 10px;
+  margin-left: 1.25rem;
 }
 
 button:hover {
   background-color: #bf5f82; /* A darker shade for hover */
 }
 
-/* Responsive design based on the current device's screen size */
-/* Adjust layout for smaller screens */
-@media screen and (max-width: 768px) {
-  .App-header {
-    min-height: 80vh;
-  }
+input {
+  width: 12rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border-color: #db7093;
+  border-style: insert;
+  border-width: 0.1rem;
 }
-/* Adjust layout for even smaller screens */
-@media screen and (max-width: 480px) {
-  .App-logo {
-    height: 30vmin;
-  }
+form {
+  text-align: center;
 }
+#final-suggestion {
+  color: #0a0909;
+  text-align: start;
+  width: 100%;
+  background-color: rgba(237, 232, 232, 0.4);
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 10%;
+  margin-left: 3%;
+  margin-right: 3%;
+  border-radius: 3rem;
+}
+#final-suggestion-wrapper {
+  display: flex;
+  justify-self: center;
+  align-items: center;
 
-/* Hover effect for testing*/
-.button:hover {
-  background-color: #4caf50;
-  color: white;
 }
