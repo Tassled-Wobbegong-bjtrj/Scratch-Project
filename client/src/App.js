@@ -1,26 +1,21 @@
+// ❤️❤️ ❤️❤️ ❤️❤️
+import "./App.css";
 
-import './App.css';
+// We can do inline or external stylesheet?
+//https://www.w3schools.com/react/react_css.asp
 
-function App() {
+import React from 'react'
+import QuestionWindow from './Components/QuestionWindow'
+import './App.css'
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img npm run 
-         className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to DateNight</h1>
+      <QuestionWindow />
     </div>
   );
-}
+};
 
 export default App;

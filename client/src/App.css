@@ -1,38 +1,102 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
+
+body {
+  background-color: #fde2e4; /* Soft pink background for a lighter feel */
+  background-image: url("../public/datenightbackground.avif"); /* Update with your actual image path */
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  font-family: "Montserrat", sans-serif; /* Consistent font family */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  background: linear-gradient(
+    135deg,
+    #fecdd3 0%,
+    #ffe2f1 100%
+  ); /* Gradient background */
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 360px; /* Optimized width for mobile devices */
+  padding: 25px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  top: 50%; /* Move it down by half of its height */
+  transform: translateY(-50%); /* Adjust back up by half of its height */
+}
+
+h1 {
+  font-family: Copperplate;
+  color: #db7093; /* Pale violet red color */
+  font-size: 3rem; /* Slightly smaller for mobile */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p {
+  color: #665d5d; /* Dim gray color */
+  font-size: 1.25rem; /* Adjusted for mobile readability */
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button {
+  padding: 12px 24px; /* Larger touch area for better usability */
+  background-color: #db7093; /* Matching the heading color */
   color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 1.25rem;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #bf5f82; /* A darker shade for hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  width: 12rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border-color: #db7093;
+  border-style: insert;
+  border-width: 0.1rem;
+}
+form {
+  text-align: center;
+}
+#final-suggestion {
+  color: #0a0909;
+  text-align: start;
+  width: 100%;
+  background-color: rgba(237, 232, 232, 0.4);
+  padding-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 10%;
+  margin-left: 3%;
+  margin-right: 3%;
+  border-radius: 3rem;
+}
+#final-suggestion-wrapper {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+
 }
